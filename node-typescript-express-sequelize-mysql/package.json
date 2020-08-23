@@ -1,0 +1,116 @@
+{
+  "name": "node-express-typescript-sequelize-mysql",
+  "version": "0.0.1",
+  "description": "",
+  "author": "demetoir",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc -p ./tsconfig.build.json ",
+    "format": "prettier --write \\\"src/**/*.ts\\\" \\\"test/**/*.ts\\\" ",
+    "start": "ts-node ./src/main.ts",
+    "start:dev": "ts-node-dev --respawn --transpile-only --watch 'src/**/*.ts' ./src/main.ts",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "pm2-runtime ecosystem.config.js",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config test/jest-e2e.json",
+    "docker:storage:up": "sh script/docker/storage-up.sh",
+    "docker:storage:down": "sh script/docker/storage-down.sh",
+    "docker:api:build": "sh script/docker/api-build.sh",
+    "docker:api:up": "sh script/docker/api-up.sh",
+    "docker:api:down": "sh script/docker/api-down.sh"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "sh script/husky/pre-commit"
+    }
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "chalk": "^4.1.0",
+    "class-transformer": "^0.3.1",
+    "class-validator": "^0.12.2",
+    "expect-ct": "^0.3.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.3",
+    "helmet": "^3.23.3",
+    "lodash": "^4.17.20",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.4",
+    "pm2": "^4.4.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rotating-file-stream": "^2.1.3",
+    "rxjs": "^6.5.4",
+    "sequelize": "^6.3.4",
+    "uuid": "^8.1.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/chai": "^4.2.11",
+    "@types/express": "^4.17.3",
+    "@types/express-rate-limit": "^5.0.0",
+    "@types/helmet": "^0.0.47",
+    "@types/jest": "25.2.3",
+    "@types/lodash": "^4.14.159",
+    "@types/morgan": "^1.9.1",
+    "@types/node": "^13.9.1",
+    "@types/sequelize": "^4.28.9",
+    "@types/supertest": "^2.0.8",
+    "@types/uuid": "^8.3.0",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "3.0.2",
+    "@typescript-eslint/parser": "3.0.2",
+    "csurf": "^1.11.0",
+    "eslint": "7.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.5",
+    "jest": "26.0.1",
+    "jest-mock-extended": "^1.0.9",
+    "lint-staged": "^10.2.10",
+    "node-gyp": "^7.0.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "sequelize-cli": "^6.2.0",
+    "sqlite3": "^5.0.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "26.1.0",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "ts-node-dev": "^1.0.0-pre.60",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
+  "lint-staged": {
+    "{src,apps,libs,test}/**/*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "roots": [
+      "./src",
+      "./test"
+    ],
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
