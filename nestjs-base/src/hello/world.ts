@@ -1,10 +1,8 @@
 import { Entity } from 'typeorm';
-import { IdField } from 'src/common';
-import { PKColumn, VarcharColumn } from 'src/common/typeorm';
+import { PKColumn, VarcharColumn } from '../common/database';
 
 @Entity()
 export class World {
-	@IdField()
 	@PKColumn()
 	id: number;
 

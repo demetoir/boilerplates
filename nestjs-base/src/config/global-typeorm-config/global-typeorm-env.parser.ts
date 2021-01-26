@@ -1,6 +1,4 @@
 import { ITypeormConfig } from './types';
-import { EnvNotFoundError } from '../config-loader/error/env-not-found.error';
-import { EnvValidationError } from '../config-loader/error/env-validation.error';
 import {
 	DEFAULT_GLOBAL_TYPEORM_LOGGING,
 	DEFAULT_GLOBAL_TYPEORM_SYNCHRONIZE,
@@ -13,6 +11,8 @@ import {
 	GLOBAL_TYPEORM_TYPE_VARIABLE_NAME,
 	GLOBAL_TYPEORM_USERNAME_VARIABLE_NAME,
 } from './constants';
+import { EnvNotFoundError } from '../../../dist/config/error/env-not-found.error';
+import { EnvValidationError } from '../../../dist/config/error/env-validation.error';
 
 const logger = console;
 

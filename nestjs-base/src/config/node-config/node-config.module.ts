@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { NodeConfigService } from './node-config.service';
-import { GlobalConfigModule } from '../globalConfig.module';
 
 @Module({
-	imports: [GlobalConfigModule],
+	imports: [ConfigModule],
 	providers: [NodeConfigService],
 	exports: [NodeConfigService],
 })

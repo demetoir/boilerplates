@@ -3,13 +3,13 @@ import { RoleEnum } from 'src/role/role.enum';
 import {
 	CreatedAtColumn,
 	DeletedAtColumn,
-	IdColumn,
+	PKColumn,
 	UpdatedAtColumn,
-} from '../common';
+} from '../common/database';
 
 @Entity({ name: 'roles' })
 export class RoleEntity {
-	@IdColumn()
+	@PKColumn()
 	id: number;
 
 	@CreatedAtColumn()

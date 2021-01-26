@@ -1,7 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import * as express from 'express';
-import { NodeConfigService } from 'src/config';
 import { appFactory } from 'src/app';
+import { NodeConfigService } from './config';
+
+const logger = console;
 
 async function start() {
 	const expressApp = express();
@@ -12,14 +14,14 @@ async function start() {
 
 	await app.listen(nodeConfigService.port);
 
-	console.log(`app listen port ${nodeConfigService.port}`);
+	logger.info(`app listen port ${nodeConfigService.port}`);
 }
 
 start()
 	.then(() => {
-		console.log('complete bootstrapping app');
+		logger.info('complete bootstrapping app');
 	})
 	.catch((e) => {
-		console.error('fail to bootstrap app');
-		console.error(e);
+		logger.error('fail to bootstrap app');
+		logger.error(e);
 	});

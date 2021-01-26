@@ -1,28 +1,30 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { configurationLoader } from 'src/config/configurationLoader';
-import { entities } from './entity.loader';
+import {
+	GlobalTypeormConfigModule,
+	GlobalTypeormConfigService,
+} from '../../../config';
 
 @Module({
 	imports: [
 		TypeOrmModule.forRootAsync({
-			useFactory: async () => {
-				const config = configurationLoader();
-
+			imports: [GlobalTypeormConfigModule],
+			inject: [GlobalTypeormConfigService],
+			useFactory: async (configService: GlobalTypeormConfigService) => {
 				return {
-					type: 'mysql',
-					host: config.TYPEORM_HOST,
-					port: config.TYPEORM_PORT,
-					database: config.TYPEORM_DATABASE,
-					username: config.TYPEORM_USERNAME,
-					password: config.TYPEORM_PASSWORD,
-					synchronize: config.TYPEORM_SYNCHRONIZE,
-					logging: config.TYPEORM_LOGGING,
+					type: configService.type,
+					host: configService.host,
+					port: configService.port,
+					database: configService.database,
+					username: configService.username,
+					password: configService.password,
+					synchronize: configService.synchronize,
+					logging: configService.logging,
 					bigNumberStrings: false,
-					entities,
+					entities: [],
 					migrations: [],
 					subscribers: [],
-				};
+				} as any;
 			},
 		}),
 	],

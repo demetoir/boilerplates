@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import * as dotenv from 'dotenv';
 
 const getDotEnv = (nodeEnv = 'development') => {
-	const envDir = `${__dirname}/../../env`;
+	const envDir = `${__dirname}/../../../env`;
 
 	const mapper = {
 		development: `${envDir}/.env.dev`,
@@ -19,8 +19,8 @@ const getDotEnv = (nodeEnv = 'development') => {
 	return dotenv.config({ path }).parsed;
 };
 
-export const configurationLoader = (): any => {
+export const loadDotenv = (): any => {
 	const dotEnv = getDotEnv(process.env.NODE_ENV);
 
-	return transformEnv({ ...process.env, ...dotEnv });
+	return { ...process.env, dotEnv };
 };
