@@ -1,0 +1,9 @@
+/node_modules
+/.log
+/test
+/docker/.volumns
+/coverage
+/.layer
+/.serverless
+/coverage
+/compdoc

@@ -1,0 +1,146 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserSetting {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime!
+  userId: Int!
+}
+
+"""Date custom scalar type"""
+scalar DateTime
+
+type Vector {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  index: Int!
+  expression: Expression!
+}
+
+type Expression {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  type: Int!
+  name: String!
+  content: String!
+  description: String!
+  likeCount: Int!
+  isForked: Boolean!
+  forkCount: Int!
+  owner: User!
+  vectors: [Vector!]!
+}
+
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  email: String!
+  description: String!
+  isAnonymous: Boolean!
+  likedCount: Int!
+  forkedCount: Int!
+  setting: UserSetting!
+  expressions: [Expression!]!
+}
+
+type JWTResponse {
+  accessToken: String!
+  refreshToken: String!
+  tokenType: String!
+}
+
+type WhoAmI {
+  message: String!
+}
+
+input UserSettingInput {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime!
+  userId: Int!
+}
+
+input VectorInput {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  index: Int!
+  expression: ExpresionInput!
+}
+
+input ExpresionInput {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  type: Int!
+  name: String!
+  content: String!
+  description: String!
+  likeCount: Int!
+  isForked: Boolean!
+  forkCount: Int!
+  owner: UserInput!
+  vectors: [VectorInput!]!
+}
+
+input UserInput {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  name: String!
+  email: String!
+  description: String!
+  isAnonymous: Boolean!
+  likedCount: Int!
+  forkedCount: Int!
+  setting: UserSettingInput = {}
+  expressions: [ExpresionInput!]!
+}
+
+input JWTResponseInput {
+  accessToken: String!
+  refreshToken: String!
+  tokenType: String!
+}
+
+type Query {
+  getManyUser: [User!]!
+  getOneUser: User!
+  publishTokenByBasic: JWTResponse!
+  whoAmI: WhoAmI!
+}
+
+type Mutation {
+  updateOneUser(input: UpdateUserInput!, id: ID!): User!
+}
+
+input UpdateUserInput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  name: String
+  email: String
+  description: String
+  isAnonymous: Boolean
+  likedCount: Int
+  forkedCount: Int
+  setting: UserSettingInput
+  expressions: [ExpresionInput!]
+}
