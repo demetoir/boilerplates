@@ -1,0 +1,17 @@
+# git and github
+.gitignore
+/.git
+
+# IDE
+/.idea
+/.vscode
+
+# docs
+README.md
+
+# root node_modules
+node_modules
+
+# bundling output
+/build
+
