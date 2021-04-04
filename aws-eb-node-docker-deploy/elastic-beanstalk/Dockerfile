@@ -9,16 +9,19 @@
 
 FROM node:14-alpine
 
-# 앱 디렉터리 생성
+# set working directory
 WORKDIR /usr
 
 # install pm2 as global
 RUN npm install pm2 -g
 
-# copy all to container
-COPY ./bundle .
-
+# copy package.json yarn file first and install node_module for docker image layer cache
+COPY ./bundle/package.json .
+COPY ./bundle/yarn.lock .
 RUN yarn --production
+
+# copy other file from bundle
+COPY ./bundle .
 
 EXPOSE 3000
 
