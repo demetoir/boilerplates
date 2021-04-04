@@ -3,15 +3,14 @@
 - EB CLI 3.19.4 (Python 3.9.1)
 - node 14
 - yarn 1.22.5
-- platform branch: Docker running on 64bit Amazon Linux 2 platform version: 3.2.3
+- platform branch: Docker running on 64bit Amazon Linux
 
 # todo
 
 - [ ] eb config 분리
 - [ ] .ebignore 사용
 - [ ] 환경변수 넘겨주는것
-- [ ] nginx config inject하도록 스크립트 추가
-- [ ] 빌드한 파일 inject 하도록 스크립트 추가
+
 
 # 디렉토리 구조
 

@@ -10,7 +10,7 @@ global:
   application_name: aws eb deploy example
   branch: null
   default_ec2_keyname: null
-  default_platform: Docker running on 64bit Amazon Linux 2
+  default_platform: Docker running on 64bit Amazon Linux
   default_region: ap-northeast-2
   include_git_submodules: true
   instance_profile: null
