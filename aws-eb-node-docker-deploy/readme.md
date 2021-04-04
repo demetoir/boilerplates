@@ -51,6 +51,9 @@ platform branch: Docker running on 64bit Amazon Linux 2 platform version: 3.2.3
 
 * 이렇게 하고 저장하면 바로 https 연결 가능하다
 
+# EB nginx 설정
+/elastic-beanstalk/.ebextensions/nginx/nginx.conf 가 기본 설정파일
+
 # AWS EB 배포 과정
 
 1. install aws eb cli at local
@@ -115,21 +118,6 @@ yarn eb:deploy
 
 이렇게 하면 수동으로 로컬에서 배포는 가능하다
 
-eb deploy 시 도커 이미지를 빌드하므로 도커 이미지를 빌드하는데 최적화가 필요하다 Dockerfile에서 문법인
-
-```dockerfile
-FROM node:14-alpine AS BUILD_IMAGE
-```
-
-이거 쓰면 local에서는 되지만 deploy시에는 터진다
-
-디폴트값으로 아무것도 설정하지 않으면 프로젝트 폴더 전체를 번들링해서 업로드한다
-
-# nginx proxy setting
-
-.platform/nginx/conf.d 디렉토레이 지정하면 돌아가긴한다 다만 이경우 도메인 연결시 nginx 상에서 upstream server connection error 발생한다.
-
-https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/platforms-linux-extend.html
 
 # [reference]
 
