@@ -16,7 +16,8 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  profile: null
+  # 여기 profile은 적절한것을 지정할것
+  profile: eb-only
   repository: null
   sc: null
   workspace_type: Application

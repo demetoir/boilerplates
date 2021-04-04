@@ -1,9 +1,9 @@
 # aws eb deploy with node docker
 
 - EB CLI 3.19.4 (Python 3.9.1)
-- node 14 
+- node 14
 - yarn 1.22.5
-  platform branch: Docker running on 64bit Amazon Linux 2 platform version: 3.2.3
+- platform branch: Docker running on 64bit Amazon Linux 2 platform version: 3.2.3
 
 # todo
 
@@ -27,13 +27,30 @@ aws eb cli 사용시 /elastic-beanstalk 로 이동한뒤 사용할것
 
 platform branch: Docker running on 64bit Amazon Linux 2 platform version: 3.2.3
 
-## SSL 인증서 및 도메인 설정
+# EB 에 domain 설정하기
 
-환경에서 ALB 설정 들어가서 리스너에서 https, 443, 인증서, SSL 정책은 첫번째것 선택
+* name cheap 에서 도메인 하나 사기
+* aws route 53 에서 도메인에 해당하는 호스팅 영역 생성
+* name cheap 에서 만든 도메인에서 custom nameserver 지정하는 부분에 route 53 의 nameserver 를 추가
+* route 53에서 A record로 www.expcloud.xyz를  eb의 ALB로 가르키도록 설정하면
+* www.expcloud.xyz로 http은 연결된다
 
-보안 그룹에서 http/https 용 80,443 열어놓을것
+# AWS CM에서 도메인용 SSL 인증서 생성
 
-route53에 연결시 DNS는 A 타입에 eb ALB를 가르키도록 설정한다
+* AWS CM 에서 인증서 만들고 바로 DNS 넣기 한다
+* 그리고 하단 CNAME 등록으로 인증서 요청한다
+
+# EB ALB https 설정하기
+
+* aws console에서 eb 의 환경 ⇒ 구성 ⇒ 로드 밸런서 ⇒ 리스너 추가하기
+    * 설정은 아래 처럼
+        * 포트: 443
+        * 프로토콜: https
+        * SSL 인증서: 위에서 만든 AWS 인증서
+        * SSL 정책: ELB security policy 2016 08
+        * default process: default
+
+* 이렇게 하고 저장하면 바로 https 연결 가능하다
 
 # AWS EB 배포 과정
 
